@@ -1,40 +1,40 @@
 (function () {
     angular
-        .module('WebAppMaker')
-        .controller('websiteEditController', websiteEditController);
+        .module('CarShare')
+        .controller('carEditController', carEditController);
     
-    function websiteEditController($routeParams,
+    function carEditController($routeParams,
                                    $location,
-                                   websiteService) {
+                                   carService) {
         var model = this;
 
         model.userId = $routeParams['userId'];
-        model.websiteId = $routeParams['websiteId'];
-        model.deleteWebsite = deleteWebsite;
+        model.carId = $routeParams['carId'];
+        model.deleteCar = deleteCar;
 
         function init() {
-            model.websites = websiteService
-                .findAllWebsitesForUser(model.userId)
-                .then(renderWebsites);
-            model.website = websiteService
-                .findWebsiteById(model.websiteId)
-                .then(renderWebsite);
+            model.cars = carService
+                .findAllCarsForUser(model.userId)
+                .then(renderCars);
+            model.car = carService
+                .findCarById(model.carId)
+                .then(renderCar);
         }
         init();
 
-        function renderWebsites(websites) {
-            model.websites = websites;
+        function renderCars(cars) {
+            model.cars = cars;
         }
 
-        function renderWebsite(website) {
-            model.website = website;
+        function renderCar(car) {
+            model.car = car;
         }
 
-        function deleteWebsite(websiteId) {
-            websiteService
-                .deleteWebsite(model.userId, websiteId)
+        function deleteCar(carId) {
+            carService
+                .deleteCar(model.userId, carId)
                 .then(function (status) {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/user/'+model.userId+'/car');
                 });
         }
     }

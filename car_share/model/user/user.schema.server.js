@@ -7,7 +7,9 @@ var userSchema = mongoose.Schema({
     lastName: String,
     email: String,
     phone: String,
-    websites: [{type: mongoose.Schema.Types.ObjectId, ref: "WebsiteModel"}],
+    cars: [{type: mongoose.Schema.Types.ObjectId, ref: "CarModel"}],
+    posts: [{type: mongoose.Schema.Types.ObjectId, ref: "PostModel"}],
+    histories: [{type: mongoose.Schema.Types.ObjectId, ref: "HistoryModel"}],
     dateCreated: {type: Date, default: Date.now}
 }, {collection: "user"});
 

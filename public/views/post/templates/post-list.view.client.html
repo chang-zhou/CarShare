@@ -8,11 +8,11 @@
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
-            <a class="navbar-brand" href="#!/user/{{model.userId}}/website">
-                Websites
-            </a>
+            <div class="navbar-brand">
+                My Posts
+            </div>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website/new" class="navbar-link">
+                <a href="#!/user/{{model.userId}}/post/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -34,28 +34,28 @@
                     Accessed
                 </div>
                 <div class="col-xs-1">
-                    <a href="#!/user/{{model.userId}}/website/new" class="new-button">
+                    <a href="#!/user/{{model.userId}}/post/new" class="new-button">
                         <span class="glyphicon glyphicon-plus pull-right"></span>
                     </a>
                 </div>
             </div>
         </li>
 
-        <li ng-repeat="website in model.websites" class="list-group-item">
+        <li ng-repeat="post in model.posts" class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-xs-11">
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
-                        {{website.name}}
+                    <a href="#!/user/{{model.userId}}/post/{{post._id}}">
+                        {{post.name}}
                     </a>
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    {{website.created | date}}
+                    {{post.created | date}}
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs">
-                    {{website.accessed | date}}
+                    {{post.accessed | date}}
                 </div>
                 <div class="col-xs-1">
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                    <a href="#!/user/{{model.userId}}/post/{{post._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>

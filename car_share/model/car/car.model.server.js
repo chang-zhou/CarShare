@@ -1,64 +1,64 @@
 var mongoose = require('mongoose');
-var widgetSchema = require('./widget.schema.server');
-var widgetModel = mongoose.model('WidgetModel', widgetSchema);
-var pageModel = require('../page/page.model.server');
+var carSchema = require('./car.schema.server');
+var carModel = mongoose.model('CarModel', carSchema);
+var userModel = require('../user/user.model.server');
 
 // api
-widgetModel.createWidget = createWidget;
-widgetModel.findAllWidgetsForPage = findAllWidgetsForPage;
-widgetModel.deleteWidget = deleteWidget;
-widgetModel.findWidgetById = findWidgetById;
-widgetModel.updateWidget = updateWidget;
-widgetModel.reorderWidget = reorderWidget;
+carModel.createCar = createCar;
+carModel.findAllCarsForUser = findAllCarsForUser;
+carModel.deleteCar = deleteCar;
+carModel.findCarById = findCarById;
+carModel.updateCar = updateCar;
+carModel.reorderCar = reorderCar;
 
-module.exports = widgetModel;
+module.exports = carModel;
 
-function createWidget(pageId, widget, widgetType) {
-    widget._page = pageId;
-    widget.type = widgetType;
-    return widgetModel
-        .create(widget)
-        .then(function (widget) {
-            return pageModel
-                .addWidget(pageId, widget._id);
+function createCar(userId, car, carType) {
+    car._user = userId;
+    car.type = carType;
+    return carModel
+        .create(car)
+        .then(function (car) {
+            return userModel
+                .addCar(userId, car._id);
         })
 }
 
-function findAllWidgetsForPage(pageId) {
-    return pageModel
-        .findById(pageId)
-        .populate('widgets')
+function findAllCarsForUser(userId) {
+    return userModel
+        .findById(userId)
+        .populate('cars')
         .exec()
-        .then(function (page) {
-            return page.widgets;
+        .then(function (user) {
+            return user.cars;
         });
 }
 
-function deleteWidget(pageId, widgetId) {
-    return widgetModel
-        .remove({_id: widgetId})
+function deleteCar(userId, carId) {
+    return carModel
+        .remove({_id: carId})
         .then(function (status) {
-            return pageModel
-                .deleteWidget(pageId, widgetId);
+            return userModel
+                .deleteCar(userId, carId);
         });
 }
 
-function findWidgetById(widgetId) {
-    return widgetModel.findById(widgetId);
+function findCarById(carId) {
+    return carModel.findById(carId);
 }
 
-function updateWidget(widgetId, widget) {
-    return widgetModel.update({_id: widgetId}, {$set: widget});
+function updateCar(carId, car) {
+    return carModel.update({_id: carId}, {$set: car});
 }
 
-function reorderWidget(pageId, start, end) {
-    return pageModel
-        .findById(pageId)
-        .then(function (page) {
-            var widgets = page.widgets;
-            var widget = widgets[start];
-            widgets.splice(start, 1);
-            widgets.splice(end, 0, widget);
-            return page.save();
+function reorderCar(userId, start, end) {
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            var cars = user.cars;
+            var car = cars[start];
+            cars.splice(start, 1);
+            cars.splice(end, 0, car);
+            return user.save();
         });
 }

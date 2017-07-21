@@ -1,50 +1,50 @@
-(function() {
+(function () {
     angular
-        .module('WebAppMaker')
-        .service('widgetService', widgetService);
+        .module('CarShare')
+        .service('carService', carService);
 
-    function widgetService($http) {
-        this.createWidget = createWidget;
-        this.findAllWidgetsForPage = findAllWidgetsForPage;
-        this.findWidgetById = findWidgetById;
-        this.updateWidget = updateWidget;
-        this.deleteWidget = deleteWidget;
+    function carService($http) {
+        this.createCar = createCar;
+        this.findAllCarsForUser = findAllCarsForUser;
+        this.findCarById = findCarById;
+        this.deleteCar = deleteCar;
+        this.updateCar = updateCar;
 
-        function createWidget(pageId, widget, widgetType) {
-            var url = "/api/assignment/page/"+pageId+"/widget/"+widgetType;
-            return $http.post(url, widget)
+        function createCar(userId, car) {
+            var url = "/api/user/"+userId+"/car";
+            return $http.post(url, car)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        function findAllWidgetsForPage(pageId) {
-            var url = "/api/assignment/page/"+pageId+"/widget";
+        function findCarById(carId) {
+            var url = "/api/car/"+carId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        function findWidgetById(widgetId) {
-            var url = "/api/assignment/widget/"+widgetId;
+        function findAllCarsForUser(userId) {
+            var url = "/api/user/"+userId+"/car";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        function updateWidget(widgetId, widget) {
-            var url = "/api/assignment/widget/"+widgetId;
-            return $http.put(url, widget)
-                .then(function (response) {
-                    return response.data;
-                });
-        }
-
-        function deleteWidget(pageId, widgetId){
-            var url = "/api/assignment/page/"+pageId+"/widget/"+widgetId;
+        function deleteCar(userId, carId) {
+            var url = "/api/user/"+userId+"/car/"+carId;
             return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function updateCar(carId, car){
+            var url = "/api/car/"+carId;
+            return $http.put(url, car)
                 .then(function (response) {
                     return response.data;
                 });

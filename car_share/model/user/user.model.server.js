@@ -9,26 +9,71 @@ userModel.findUserByUsername = findUserByUsername;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
-userModel.addWebsite = addWebsite;
-userModel.deleteWebsite = deleteWebsite;
+
+userModel.addPost = addPost;
+userModel.deletePost = deletePost;
+
+userModel.addCar = addCar;
+userModel.deleteCar = deleteCar;
+
+userModel.addHistory = addHistory;
+userModel.deleteHistory = deleteHistory;
 
 module.exports = userModel;
 
-function deleteWebsite(userId, websiteId) {
+function deletePost(userId, postId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            var index = user.websites.indexOf(websiteId);
-            user.websites.splice(index, 1);
+            var index = user.posts.indexOf(postId);
+            user.posts.splice(index, 1);
             return user.save();
         });
 }
 
-function addWebsite(userId, websiteId) {
+function addPost(userId, postId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            user.websites.push(websiteId);
+            user.posts.push(postId);
+            return user.save();
+        });
+}
+
+function deleteCar(userId, carId) {
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            var index = user.cars.indexOf(carId);
+            user.cars.splice(index, 1);
+            return user.save();
+        });
+}
+
+function addCar(userId, carId) {
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            user.cars.push(carId);
+            return user.save();
+        });
+}
+
+function deleteHistory(userId, historyId) {
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            var index = user.historys.indexOf(historyId);
+            user.historys.splice(index, 1);
+            return user.save();
+        });
+}
+
+function addHistory(userId, historyId) {
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            user.historys.push(historyId);
             return user.save();
         });
 }

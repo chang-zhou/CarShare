@@ -1,11 +1,11 @@
 const app = require('../../express');
 var postModel = require('../model/post/post.model.server');
 
-app.post("/api/assignment/user/:userId/post", createPostForUser);
-app.get("/api/assignment/user/:userId/post", findAllPostsForUser);
-app.get("/api/assignment/post/:postId", findPostById);
-app.delete("/api/assignment/user/:userId/post/:postId", deletePost);
-app.put("/api/assignment/post/:postId", updatePost);
+app.post("/api/user/:userId/post", createPostForUser);
+app.get("/api/user/:userId/post", findAllPostsForUser);
+app.get("/api/post/:postId", findPostById);
+app.delete("/api/user/:userId/post/:postId", deletePost);
+app.put("/api/post/:postId", updatePost);
 
 function findAllPostsForUser(req, res) {
     postModel

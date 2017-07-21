@@ -1,22 +1,16 @@
 var mongoose = require('mongoose');
 
-var widgetSchema = mongoose.Schema({
-    _page: {type: mongoose.Schema.Types.ObjectId, ref: "PageModel"},
-    type: {type: String, enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT']},
+var carSchema = mongoose.Schema({
+    _user: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
+    type: {type: String, enum: ['SUV', 'COUPE', 'SEDAN', 'LUXURY', 'MINIVAN']},
     name: String,
-    text: String,
-    placeholder: String,
     description: String,
+    year: String,
+    make: String,
+    model: String,
     url: String,
-    width: String,
-    height: String,
-    rows: Number,
-    size: Number,
-    class: String,
-    icon: String,
-    deletable: Boolean,
-    formatted: Boolean,
+    capacity: String,
     dateCreated: {type: Date, default: Date.now}
-}, {collection: 'widget'});
+}, {collection: 'car'});
 
-module.exports = widgetSchema;
+module.exports = carSchema;

@@ -1,50 +1,50 @@
 (function () {
     angular
-        .module('WebAppMaker')
-        .service('websiteService', websiteService);
+        .module('CarShare')
+        .service('postService', postService);
     
-    function websiteService($http) {
-        this.createWebsite = createWebsite;
-        this.findAllWebsitesForUser = findAllWebsitesForUser;
-        this.findWebsiteById = findWebsiteById;
-        this.deleteWebsite = deleteWebsite;
-        this.updateWebsite = updateWebsite;
+    function postService($http) {
+        this.createPost = createPost;
+        this.findAllPostsForUser = findAllPostsForUser;
+        this.findPostById = findPostById;
+        this.deletePost = deletePost;
+        this.updatePost = updatePost;
 
-        function createWebsite(userId, website) {
-            var url = "/api/assignment/user/"+userId+"/website";
-            return $http.post(url, website)
+        function createPost(userId, post) {
+            var url = "/api/user/"+userId+"/post";
+            return $http.post(url, post)
                 .then(function (response) {
                     return response.data;
                 });
         }
         
-        function findWebsiteById(websiteId) {
-            var url = "/api/assignment/website/"+websiteId;
+        function findPostById(postId) {
+            var url = "/api/post/"+postId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        function findAllWebsitesForUser(userId) {
-            var url = "/api/assignment/user/"+userId+"/website";
+        function findAllPostsForUser(userId) {
+            var url = "/api/user/"+userId+"/post";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        function deleteWebsite(userId, websiteId) {
-            var url = "/api/assignment/user/"+userId+"/website/"+websiteId;
+        function deletePost(userId, postId) {
+            var url = "/api/user/"+userId+"/post/"+postId;
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        function updateWebsite(websiteId, website){
-            var url = "/api/assignment/website/"+websiteId;
-            return $http.put(url, website)
+        function updatePost(postId, post){
+            var url = "/api/post/"+postId;
+            return $http.put(url, post)
                 .then(function (response) {
                     return response.data;
                 });

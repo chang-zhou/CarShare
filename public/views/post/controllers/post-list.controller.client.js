@@ -1,23 +1,23 @@
 (function () {
     angular
-        .module('WebAppMaker')
-        .controller('websiteListController', websiteListController);
+        .module('Carshare')
+        .controller('postListController', postListController);
     
-    function websiteListController($routeParams,
-                                   websiteService) {
+    function postListController($routeParams,
+                                   postService) {
         var model = this;
 
         model.userId = $routeParams['userId'];
 
         function init() {
-            websiteService
-                .findAllWebsitesForUser(model.userId)
-                .then(renderWebsites);
+            postService
+                .findAllPostsForUser(model.userId)
+                .then(renderPosts);
         }
         init();
 
-        function renderWebsites(websites) {
-            model.websites = websites;
+        function renderPosts(posts) {
+            model.posts = posts;
         }
     }
 })();

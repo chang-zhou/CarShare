@@ -8,11 +8,11 @@
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
-            <a class="navbar-brand" href="#!/user/{{model.userId}}/website">
-                Websites
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/car">
+                My Cars
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website/new" class="navbar-link">
+                <a href="#!/user/{{model.userId}}/car/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -25,37 +25,37 @@
         <li class="list-group-item active">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-xs-11">
-                    Name
+                    Car
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    Created
+                    Make
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs">
-                    Accessed
+                    Model
                 </div>
                 <div class="col-xs-1">
-                    <a href="#!/user/{{model.userId}}/website/new" class="new-button">
+                    <a href="#!/user/{{model.userId}}/car/new" class="new-button">
                         <span class="glyphicon glyphicon-plus pull-right"></span>
                     </a>
                 </div>
             </div>
         </li>
 
-        <li ng-repeat="website in model.websites" class="list-group-item">
+        <li ng-repeat="car in model.cars" class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-xs-11">
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
-                        {{website.name}}
+                    <a href="#!/user/{{model.userId}}/car/{{car._id}}">
+                        {{car.name}}
                     </a>
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    {{website.created | date}}
+                    {{car.make}}
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs">
-                    {{website.accessed | date}}
+                    {{car.model}}
                 </div>
                 <div class="col-xs-1">
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                    <a href="#!/user/{{model.userId}}/car/{{car._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>

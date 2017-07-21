@@ -9,7 +9,11 @@
 
         model.userId = $routeParams['userId'];
 
-        model.websites = websites;
+        model.searchPosts = '#!/search';
+        model.myPosts = '#!/user/'+model.userId+'/post';
+        model.myCars = '#!/user/'+model.userId+'/car';
+        model.myHistory = '#!/user/'+model.userId+'/history';
+
         model.deleteUser = deleteUser;
 
         function init() {
@@ -18,10 +22,6 @@
                 .then(renderUser, userError);
         }
         init();
-
-        function websites() {
-            $location.url('/user/' + model.userId + "/website");
-        }
 
         function renderUser (user) {
             model.user = user;

@@ -1,40 +1,40 @@
 (function () {
     angular
-        .module('WebAppMaker')
-        .controller('websiteEditController', websiteEditController);
+        .module('CarShare')
+        .controller('postEditController', postEditController);
     
-    function websiteEditController($routeParams,
+    function postEditController($routeParams,
                                    $location,
-                                   websiteService) {
+                                   postService) {
         var model = this;
 
         model.userId = $routeParams['userId'];
-        model.websiteId = $routeParams['websiteId'];
-        model.deleteWebsite = deleteWebsite;
+        model.postId = $routeParams['postId'];
+        model.deletePost = deletePost;
 
         function init() {
-            model.websites = websiteService
-                .findAllWebsitesForUser(model.userId)
-                .then(renderWebsites);
-            model.website = websiteService
-                .findWebsiteById(model.websiteId)
-                .then(renderWebsite);
+            model.posts = postService
+                .findAllPostsForUser(model.userId)
+                .then(renderPosts);
+            model.post = postService
+                .findPostById(model.postId)
+                .then(renderPost);
         }
         init();
 
-        function renderWebsites(websites) {
-            model.websites = websites;
+        function renderPosts(posts) {
+            model.posts = posts;
         }
 
-        function renderWebsite(website) {
-            model.website = website;
+        function renderPost(post) {
+            model.post = post;
         }
 
-        function deleteWebsite(websiteId) {
-            websiteService
-                .deleteWebsite(model.userId, websiteId)
+        function deletePost(postId) {
+            postService
+                .deletePost(model.userId, postId)
                 .then(function (status) {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/user/'+model.userId+'/post');
                 });
         }
     }

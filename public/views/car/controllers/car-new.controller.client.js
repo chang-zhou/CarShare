@@ -1,37 +1,37 @@
 (function () {
     angular
-        .module('WebAppMaker')
-        .controller('websiteNewController', websiteNewController);
+        .module('CarShare')
+        .controller('carNewController', carNewController);
     
-    function websiteNewController($routeParams,
+    function carNewController($routeParams,
                                    $location,
-                                   websiteService) {
+                                   carService) {
         var model = this;
 
         model.userId = $routeParams['userId'];
-        model.createWebsite = createWebsite;
+        model.createCar = createCar;
 
         function init() {
-            model.websites = websiteService
-                .findAllWebsitesForUser(model.userId)
-                .then(renderWebsites);
+            model.cars = carService
+                .findAllCarsForUser(model.userId)
+                .then(renderCars);
         }
         init();
 
-        function renderWebsites(websites) {
-            model.websites = websites;
+        function renderCars(cars) {
+            model.cars = cars;
         }
 
-        function renderWebsite(website) {
-            model.website = website;
+        function renderCar(car) {
+            model.car = car;
         }
 
-        function createWebsite(website) {
-            websiteService
-                .createWebsite(model.userId, website)
-                .then(renderWebsite)
+        function createCar(car) {
+            carService
+                .createCar(model.userId, car)
+                .then(renderCar)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/user/'+model.userId+'/car');
                 });
         }
     }

@@ -63,9 +63,19 @@
                 controller: 'historyListController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/history/:historyId', {
+                templateUrl: 'views/history/templates/history-detail.view.client.html',
+                controller: 'historyDetailController',
+                controllerAs: 'model'
+            })
             .when('/user/:userId/car/:carId/history', {
                 templateUrl: 'views/history/templates/history-list.view.client.html',
                 controller: 'historyListController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/car/:carId/history/:historyId', {
+                templateUrl: 'views/history/templates/history-detail.view.client.html',
+                controller: 'historyDetailController',
                 controllerAs: 'model'
             })
     }

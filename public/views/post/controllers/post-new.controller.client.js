@@ -1,37 +1,37 @@
 (function () {
     angular
-        .module('WebAppMaker')
-        .controller('websiteNewController', websiteNewController);
+        .module('CarShare')
+        .controller('postNewController', postNewController);
     
-    function websiteNewController($routeParams,
+    function postNewController($routeParams,
                                    $location,
-                                   websiteService) {
+                                   postService) {
         var model = this;
 
         model.userId = $routeParams['userId'];
-        model.createWebsite = createWebsite;
+        model.createPost = createPost;
 
         function init() {
-            model.websites = websiteService
-                .findAllWebsitesForUser(model.userId)
-                .then(renderWebsites);
+            model.posts = postService
+                .findAllPostsForUser(model.userId)
+                .then(renderPosts);
         }
         init();
 
-        function renderWebsites(websites) {
-            model.websites = websites;
+        function renderPosts(posts) {
+            model.posts = posts;
         }
 
-        function renderWebsite(website) {
-            model.website = website;
+        function renderPost(post) {
+            model.post = post;
         }
 
-        function createWebsite(website) {
-            websiteService
-                .createWebsite(model.userId, website)
-                .then(renderWebsite)
+        function createPost(post) {
+            postService
+                .createPost(model.userId, post)
+                .then(renderPost)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/user/'+model.userId+'/post');
                 });
         }
     }
