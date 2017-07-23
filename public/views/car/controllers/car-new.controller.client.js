@@ -3,13 +3,11 @@
         .module('CarShare')
         .controller('carNewController', carNewController);
     
-    function carNewController($routeParams,
-                                   $location,
-                                   carService) {
+    function carNewController($routeParams, carService) {
         var model = this;
 
         model.userId = $routeParams['userId'];
-        model.createCar = createCar;
+        model.carId = 'default';
 
         function init() {
             model.cars = carService
@@ -20,19 +18,6 @@
 
         function renderCars(cars) {
             model.cars = cars;
-        }
-
-        function renderCar(car) {
-            model.car = car;
-        }
-
-        function createCar(car) {
-            carService
-                .createCar(model.userId, car)
-                .then(renderCar)
-                .then(function () {
-                    $location.url('/user/'+model.userId+'/car');
-                });
         }
     }
 })();

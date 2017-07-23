@@ -84,59 +84,27 @@
             </ul>
         </div>
         <div class="col-sm-8 col-xc-12">
-            <label for="name">Name</label>
-            <input class="form-control"
-                   ng-model="car.name"
-                   placeholder="Car Name"
-                   id="name"/>
-
-            <label for="description">Description</label>
-            <textarea id="description"
-                      rows="5"
-                      ng-model="car.description"
-                      placeholder="Car Description"
-                      class="form-control">
-            </textarea>
-
-            <label for="name">Year</label>
-            <input class="form-control"
-                   ng-model="car.year"
-                   placeholder="2017"
-                   id="year"/>
-
-            <label for="name">Make</label>
-            <input class="form-control"
-                   ng-model="car.make"
-                   placeholder="Toyota"
-                   id="make"/>
-
-            <label for="name">Model</label>
-            <input class="form-control"
-                   ng-model="car.model"
-                   placeholder="Camry"
-                   id="model"/>
-
-            <label for="name">Capacity</label>
-            <input class="form-control"
-                   ng-model="car.capacity"
-                   placeholder="5"
-                   id="capacity"/>
-
-            <label for="name">Type</label>
-            <input class="form-control"
-                   ng-model="car.type"
-                   placeholder="SEDAN"
-                   id="type"/>
-
-            <label for="url">URL</label>
-            <input class="form-control"
-                   ng-model="car.url"
-                   id="url"/>
-
-            <a ng-click="model.createCar(car)"
-               class="btn btn-block btn-success">
-                Register
-            </a>
+            <form action="/api/upload" method="post" enctype="multipart/form-data">
+                <input name="userId" value="{{model.userId}}" style="display: none"/>
+                <input name="carId" value="{{model.carId}}" style="display: none"/>
+                <label>Car Name</label>
+                <input name="carName" value={{model.car.name}} placeholder="Car Name" class="form-control"/>
+                <label>Year</label>
+                <input name="year" value={{model.car.year}} placeholder="2017" class="form-control"/>
+                <label>Make</label>
+                <input name="make" value={{model.car.make}} placeholder="Toyota" class="form-control"/>
+                <label>Model</label>
+                <input name="model" value={{model.car.model}} placeholder="Camry" class="form-control"/>
+                <label>Condition</label>
+                <input name="condition" value={{model.car.condition}} placeholder="Excellent" class="form-control"/>
+                <label>Capacity</label>
+                <input name="capacity" value={{model.car.capacity}} placeholder="5" class="form-control"/>
+                <label>Type</label>
+                <input name="carType" value={{model.car.type}} placeholder="Sedan" class="form-control"/>
+                <label>Photo</label>
+                <input name="myFile" type="file" class="form-control"/>
+                <button type="submit" class="btn btn-block btn-primary">Register Car</button>
+            </form>
         </div>
     </div>
 </div>

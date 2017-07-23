@@ -1,50 +1,41 @@
 (function() {
     angular
-        .module('WebAppMaker')
-        .service('pageService', pageService);
+        .module('CarShare')
+        .service('historyService', historyService);
 
-    function pageService($http) {
-        this.createPage = createPage;
-        this.findPageByWebsiteId = findPageByWebsiteId;
-        this.findPageById = findPageById;
-        this.deletePage = deletePage;
-        this.updatePage = updatePage;
+    function historyService($http) {
+        this.createHistory = createHistory;
+        this.findHistoryByUserId = findHistoryByUserId;
+        this.findHistoryByCarId = findHistoryByCarId;
+        this.findHistoryById = findHistoryById;
 
-        function createPage(websiteId, page) {
-            var url = "/api/assignment/website/"+websiteId+"/page";
-            return $http.post(url, page)
+        function createHistory(userId, carId, history) {
+            var url = "/api/user/"+userId+"/car/"+carId+"/history";
+            return $http.post(url, history)
                 .then(function (response) {
                     return response.data;
                 });
         }
         
-        function findPageByWebsiteId(websiteId) {
-            var url = "/api/assignment/website/"+websiteId+"/page";
-            return $http.get(url)
-                .then(function (response) {
-                    return response.data;
-                });
-        }
-        
-        function findPageById(pageId) {
-            var url = "/api/assignment/page/"+pageId;
+        function findHistoryByUserId(userId) {
+            var url = "/api/user/"+userId+"/history";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        function deletePage(websiteId, pageId){
-            var url = "/api/assignment/website/"+websiteId+"/page/"+pageId;
-            return $http.delete(url)
+        function findHistoryByCarId(carId) {
+            var url = "/api/car/"+carId+"/history";
+            return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
-
-        function updatePage(pageId, page) {
-            var url = "/api/assignment/page/"+pageId;
-            return $http.put(url)
+        
+        function findHistoryById(historyId) {
+            var url = "/api/history/"+historyId;
+            return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });

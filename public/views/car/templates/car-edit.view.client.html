@@ -84,16 +84,12 @@
             </ul>
         </div>
         <div class="col-xs-12 col-sm-8">
+            <img ng-src="{{model.car.url}}"/>
+
             <label for="name">Name</label>
             <input class="form-control"
                    ng-model="model.car.name"
                    id="name"/>
-
-            <label for="description">Description</label>
-            <textarea id="description"
-                      rows="5"
-                      ng-model="model.car.description"
-                      class="form-control"></textarea>
 
             <label for="name">Year</label>
             <input class="form-control"
@@ -110,6 +106,11 @@
                    ng-model="model.car.model"
                    id="model"/>
 
+            <label for="name">Condition</label>
+            <input class="form-control"
+                   ng-model="model.car.condition"
+                   id="condition"/>
+
             <label for="name">Capacity</label>
             <input class="form-control"
                    ng-model="model.car.capacity"
@@ -119,13 +120,6 @@
             <input class="form-control"
                    ng-model="model.car.type"
                    id="type"/>
-
-            <label for="url">URL</label>
-            <input class="form-control"
-                   ng-model="model.car.url"
-                   id="url"/>
-
-            <img ng-src="{{model.car.url}}"/>
 
             <a ng-click="model.updateCar()"
                class="btn btn-block btn-success">

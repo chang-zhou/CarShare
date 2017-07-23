@@ -53,3 +53,54 @@ function updateCar(req, res) {
             res.sendStatus(200);
         });
 }
+
+var multer = require('multer'); // npm install multer --save
+var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
+app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
+function uploadImage(req, res) {
+    var userId = req.body.userId;
+    var carId = req.body.carId;
+    var carName = req.body.carName;
+    var year = req.body.year;
+    var make = req.body.make;
+    var model = req.body.model;
+    var condition = req.body.condition;
+    var capacity = req.body.capacity;
+    var carType = req.body.carType;
+    var myFile        = req.file;
+    var filename      = myFile.filename;     // new file name in upload folder
+
+    var url = '/uploads/'+filename;
+    var newCar = {
+        name: carName,
+        year: year,
+        make: make,
+        model: model,
+        condition: condition,
+        capacity: capacity,
+        type: carType,
+        url: url
+    };
+    var callbackUrl   = "/index.html#!/user/"+userId+"/car";
+    if(carId === 'default'){
+        carModel
+            .createCar(userId, newCar)
+            .then(function (car) {
+                res.redirect(callbackUrl);
+            });
+    }
+    else{
+        carModel
+            .findCarById(carId)
+            .then(function (car) {
+                carModel.updateCar(car._id, newCar)
+                    .then(function (status) {
+                        res.redirect(callbackUrl);
+                    });
+            })
+    }
+
+
+}

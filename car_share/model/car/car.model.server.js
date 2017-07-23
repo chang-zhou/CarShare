@@ -10,7 +10,29 @@ carModel.deleteCar = deleteCar;
 carModel.findCarById = findCarById;
 carModel.updateCar = updateCar;
 
+carModel.addHistory = addHistory;
+carModel.deleteHistory = deleteHistory;
+
 module.exports = carModel;
+
+function deleteHistory(carId, historyId) {
+    return carModel
+        .findById(carId)
+        .then(function (car) {
+            var index = car.historys.indexOf(historyId);
+            car.historys.splice(index, 1);
+            return car.save();
+        });
+}
+
+function addHistory(carId, historyId) {
+    return carModel
+        .findById(carId)
+        .then(function (car) {
+            car.historys.push(historyId);
+            return car.save();
+        });
+}
 
 function createCar(userId, car, carType) {
     car._user = userId;

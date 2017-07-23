@@ -4,7 +4,6 @@
         .controller('historyDetailController', historyDetailController);
     
     function historyDetailController($routeParams,
-                                   $location,
                                    historyService) {
         var model = this;
 
@@ -12,29 +11,21 @@
         model.historyId = $routeParams['historyId'];
 
         function init() {
-            model.historys = historyService
-                .findAllHistorysForUser(model.userId)
-                .then(renderHistorys);
+            model.histories = historyService
+                .findAllHistoriesForUser(model.userId)
+                .then(renderHistories);
             model.history = historyService
                 .findHistoryById(model.historyId)
                 .then(renderHistory);
         }
         init();
 
-        function renderHistorys(historys) {
-            model.historys = historys;
+        function renderHistories(histories) {
+            model.histories = histories;
         }
 
         function renderHistory(history) {
             model.history = history;
-        }
-
-        function deleteHistory(historyId) {
-            historyService
-                .deleteHistory(model.userId, historyId)
-                .then(function (status) {
-                    $location.url('/user/'+model.userId+'/history');
-                });
         }
     }
 })();

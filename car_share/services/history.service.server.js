@@ -1,55 +1,43 @@
 const app = require('../../express');
-var pageModel = require('../model/page/page.model.server');
+var historyModel = require('../model/history/history.model.server');
 
-app.post("/api/assignment/website/:websiteId/page", createPage);
-app.get("/api/assignment/website/:websiteId/page", findAllPagesForWebsite);
-app.get("/api/assignment/page/:pageId", findPageById);
-app.delete("/api/assignment/website/:websiteId/page/:pageId", deletePage);
-app.put("/api/assignment/page/:pageId", updatePage);
+app.post("/api/user/:userId/history", createHistory);
+app.get("/api/user/:userId/history", findAllHistoriesForUser);
+app.get("/api/car/:carId/history", findAllHistoriesForCar);
+app.get("/api/history/:historyId", findHistoryById);
 
-function findAllPagesForWebsite(req, res) {
-    pageModel
-        .findAllPagesForWebsite(req.params.websiteId)
-        .then(function (pages) {
-            res.json(pages);
+function findAllHistoriesForUser(req, res) {
+    historyModel
+        .findAllHistoriesForUser(req.params.userId)
+        .then(function (histories) {
+            res.json(histories);
         });
 }
 
-function createPage(req, res) {
-    var page = req.body;
-    var websiteId = req.params.websiteId;
-    pageModel
-        .createPage(websiteId, page)
-        .then(function (page) {
-            res.json(page);
+function findAllHistoriesForCar(req, res) {
+    historyModel
+        .findAllHistoriesForCar(req.params.carId)
+        .then(function (histories) {
+            res.json(histories);
         });
 }
 
-function findPageById(req, res) {
-    var pageId = req.params['pageId'];
-   pageModel
-       .findPageById(pageId)
-       .then(function (page) {
-           res.json(page);
+function createHistory(req, res) {
+    var history = req.body;
+    var userId = req.params.userId;
+    historyModel
+        .createHistory(userId, history)
+        .then(function (history) {
+            res.json(history);
+        });
+}
+
+function findHistoryById(req, res) {
+    var historyId = req.params['historyId'];
+   historyModel
+       .findHistoryById(historyId)
+       .then(function (history) {
+           res.json(history);
        });
 }
 
-function deletePage(req, res) {
-    var pageId = req.params.pageId;
-    var websiteId = req.params.websiteId;
-    pageModel
-        .deletePage(websiteId, pageId)
-        .then(function (status) {
-            res.sendStatus(200);
-        });
-}
-
-function updatePage(req, res) {
-    var page = req.body;
-    var pageId = req.params.pageId;
-    pageModel
-        .updatePage(pageId, page)
-        .then(function (status) {
-            res.sendStatus(200);
-        });
-}

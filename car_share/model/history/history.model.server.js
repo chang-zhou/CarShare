@@ -1,69 +1,46 @@
 var mongoose = require('mongoose');
-var pageSchema = require('./page.schema.server');
-var pageModel = mongoose.model('PageModel', pageSchema);
-var websiteModel = require('../website/website.model.server');
+var historySchema = require('./history.schema.server');
+var historyModel = mongoose.model('HistoryModel', historySchema);
+var userModel = require('../user/user.model.server');
+var carModel = require('../car/car.model.server');
 
 // api
-pageModel.createPage = createPage;
-pageModel.findAllPagesForWebsite = findAllPagesForWebsite;
-pageModel.deletePage = deletePage;
-pageModel.findPageById = findPageById;
-pageModel.updatePage = updatePage;
-pageModel.addWidget = addWidget;
-pageModel.deleteWidget = deleteWidget;
+historyModel.createHistory = createHistory;
+historyModel.findAllHistoriesForUser = findAllHistoriesForUser;
+historyModel.findHistoryById = findHistoryById;
+historyModel.findAllHistoriesForCar = findAllHistoriesForCar;
 
-module.exports = pageModel;
+module.exports = historyModel;
 
-
-function addWidget(pageId, widgetId) {
-    return pageModel
-        .findById(pageId)
-        .then(function (page) {
-            page.widgets.push(widgetId);
-            return page.save();
-        });
+function findHistoryById(historyId) {
+    return historyModel.findById(historyId);
 }
 
-function deleteWidget(pageId, widgetId) {
-    return pageModel
-        .findById(pageId)
-        .then(function (page) {
-            var index = page.widgets.indexOf(widgetId);
-            page.widgets.splice(index, 1);
-            return page.save();
-        });
-}
-
-function findPageById(pageId) {
-    return pageModel.findById(pageId);
-}
-
-function updatePage(pageId, page) {
-    return pageModel.update({_id: pageId}, {$set: page});
-}
-
-function deletePage(websiteId, pageId) {
-    return pageModel
-        .remove({_id: pageId})
-        .then(function (status) {
-            return websiteModel
-                .deletePage(websiteId, pageId);
-        });
-}
-
-function findAllPagesForWebsite(websiteId) {
-    return pageModel
-        .find({_website: websiteId})
-        .populate('_website')
+function findAllHistoriesForUser(userId) {
+    return historyModel
+        .find({_user: userId})
+        .populate('_user')
+        .populate('_car')
         .exec();
 }
 
-function createPage(websiteId, page) {
-    page._website = websiteId;
-    return pageModel
-        .create(page)
-        .then(function (page) {
-            return websiteModel
-                .addPage(websiteId, page._id);
+function findAllHistoriesForCar(carId) {
+    return historyModel
+        .find({_car: carId})
+        .populate('_user')
+        .populate('_car')
+        .exec();
+}
+
+function createHistory(userId, carId, history) {
+    history._user = userId;
+    history._car = carId;
+    return historyModel
+        .create(history)
+        .then(function (history) {
+            userModel
+                .addHistory(userId, history._id);
+            return carModel
+                .addHistory(carId, history._id);
         });
 }
