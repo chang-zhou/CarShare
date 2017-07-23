@@ -15,6 +15,7 @@
         model.myHistory = '#!/user/'+model.userId+'/history';
 
         model.deleteUser = deleteUser;
+        model.updateUser = updateUser;
 
         function init() {
             userService
@@ -32,10 +33,19 @@
         }
 
         function deleteUser() {
-            userService.deleteUser(model.userId)
+            userService
+                .deleteUser(model.userId)
                 .then(function (status) {
                     $location.url("/login");
-                })
+                });
+        }
+
+        function updateUser() {
+            userService
+                .updateUser(model.userId, model.user)
+                .then(function (status) {
+                    $location.url("/user/"+model.userId);
+                });
         }
     }
 })();

@@ -11,6 +11,7 @@
         model.userId = $routeParams['userId'];
         model.carId = $routeParams['carId'];
         model.deleteCar = deleteCar;
+        model.updateCar = updateCar;
 
         function init() {
             model.cars = carService
@@ -30,9 +31,17 @@
             model.car = car;
         }
 
-        function deleteCar(carId) {
+        function deleteCar() {
             carService
-                .deleteCar(model.userId, carId)
+                .deleteCar(model.userId, model.carId)
+                .then(function (status) {
+                    $location.url('/user/'+model.userId+'/car');
+                });
+        }
+
+        function updateCar() {
+            carService
+                .updateCar(model.carId, model.car)
                 .then(function (status) {
                     $location.url('/user/'+model.userId+'/car');
                 });

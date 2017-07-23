@@ -9,7 +9,6 @@ carModel.findAllCarsForUser = findAllCarsForUser;
 carModel.deleteCar = deleteCar;
 carModel.findCarById = findCarById;
 carModel.updateCar = updateCar;
-carModel.reorderCar = reorderCar;
 
 module.exports = carModel;
 
@@ -49,16 +48,4 @@ function findCarById(carId) {
 
 function updateCar(carId, car) {
     return carModel.update({_id: carId}, {$set: car});
-}
-
-function reorderCar(userId, start, end) {
-    return userModel
-        .findById(userId)
-        .then(function (user) {
-            var cars = user.cars;
-            var car = cars[start];
-            cars.splice(start, 1);
-            cars.splice(end, 0, car);
-            return user.save();
-        });
 }

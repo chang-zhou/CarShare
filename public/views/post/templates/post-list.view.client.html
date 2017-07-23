@@ -1,5 +1,4 @@
 
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -25,13 +24,13 @@
         <li class="list-group-item active">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-xs-11">
-                    Name
+                    Available Date
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    Created
+                    Daily Price (USD)
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs">
-                    Accessed
+                    Address
                 </div>
                 <div class="col-xs-1">
                     <a href="#!/user/{{model.userId}}/post/new" class="new-button">
@@ -45,14 +44,14 @@
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-xs-11">
                     <a href="#!/user/{{model.userId}}/post/{{post._id}}">
-                        {{post.name}}
+                        {{post.startDate | date}}
                     </a>
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    {{post.created | date}}
+                    {{post.price}}
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs">
-                    {{post.accessed | date}}
+                    {{post.address}}
                 </div>
                 <div class="col-xs-1">
                     <a href="#!/user/{{model.userId}}/post/{{post._id}}">

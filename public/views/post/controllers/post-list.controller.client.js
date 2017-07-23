@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('Carshare')
+        .module('CarShare')
         .controller('postListController', postListController);
     
     function postListController($routeParams,

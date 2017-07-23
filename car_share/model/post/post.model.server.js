@@ -1,73 +1,52 @@
 var mongoose = require('mongoose');
-var websiteSchema = require('./website.schema.server');
-var websiteModel = mongoose.model('WebsiteModel', websiteSchema);
+var postSchema = require('./post.schema.server');
+var postModel = mongoose.model('PostModel', postSchema);
 var userModel = require('../user/user.model.server');
 
 // api
-websiteModel.findAllWebsites = findAllWebsites;
-websiteModel.createWebsiteForUser = createWebsiteForUser;
-websiteModel.findAllWebsitesForUser = findAllWebsitesForUser;
-websiteModel.deleteWebsiteFromUser = deleteWebsiteFromUser;
-websiteModel.findWebsiteById = findWebsiteById;
-websiteModel.updateWebsite = updateWebsite;
-websiteModel.addPage = addPage;
-websiteModel.deletePage = deletePage;
+postModel.findAllPosts = findAllPosts;
+postModel.createPostForUser = createPostForUser;
+postModel.findAllPostsForUser = findAllPostsForUser;
+postModel.deletePostFromUser = deletePostFromUser;
+postModel.findPostById = findPostById;
+postModel.updatePost = updatePost;
 
-module.exports = websiteModel;
+module.exports = postModel;
 
-function addPage(websiteId, pageId) {
-    return websiteModel
-        .findById(websiteId)
-        .then(function (website) {
-            website.pages.push(pageId);
-            return website.save();
-        });
+function findPostById(postId) {
+    return postModel.findById(postId);
 }
 
-function deletePage(websiteId, pageId) {
-    return websiteModel
-        .findById(websiteId)
-        .then(function (website) {
-            var index = website.pages.indexOf(pageId);
-            website.pages.splice(index, 1);
-            return website.save();
-        });
+function updatePost(postId, post) {
+    return postModel.update({_id: postId}, {$set: post});
 }
 
-function findWebsiteById(websiteId) {
-    return websiteModel.findById(websiteId);
-}
-
-function updateWebsite(websiteId, website) {
-    return websiteModel.update({_id: websiteId}, {$set: website});
-}
-
-function deleteWebsiteFromUser(userId, websiteId) {
-    return websiteModel
-        .remove({_id: websiteId})
+function deletePostFromUser(userId, postId) {
+    return postModel
+        .remove({_id: postId})
         .then(function (status) {
             return userModel
-                .deleteWebsite(userId, websiteId);
+                .deletePost(userId, postId);
         });
 }
 
-function findAllWebsitesForUser(userId) {
-    return websiteModel
+function findAllPostsForUser(userId) {
+    return postModel
         .find({_user: userId})
         .populate('_user')
         .exec();
 }
 
-function createWebsiteForUser(userId, website) {
-    website._user = userId;
-    return websiteModel
-        .create(website)
-        .then(function (website) {
+function createPostForUser(userId, post) {
+    post._user = userId;
+    return postModel
+        .create(post)
+        .then(function (post) {
             return userModel
-                .addWebsite(userId, website._id)
+                .addPost(userId, post._id)
         })
 }
 
-function findAllWebsites() {
-    return websiteModel.find();
+function findAllPosts() {
+    return postModel.find();
 }
