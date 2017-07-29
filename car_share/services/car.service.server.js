@@ -80,7 +80,7 @@ function uploadImage(req, res) {
         model: model,
         condition: condition,
         capacity: capacity,
-        type: carType,
+        carType: carType,
         url: url
     };
     var callbackUrl   = "/index.html#!/user/"+userId+"/car";
@@ -95,10 +95,9 @@ function uploadImage(req, res) {
         carModel
             .findCarById(carId)
             .then(function (car) {
-                carModel.updateCar(car._id, newCar)
-                    .then(function (status) {
-                        res.redirect(callbackUrl);
-                    });
+                car.url = url;
+                car.save();
+                res.redirect(callbackUrl+"/"+car._id);
             })
     }
 

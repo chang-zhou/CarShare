@@ -9,7 +9,7 @@ var carSchema = mongoose.Schema({
     condition: String,
     url: String,
     capacity: String,
-    type: String,
+    carType: String,
     dateCreated: {type: Date, default: Date.now}
 }, {collection: 'car'});
 

@@ -86,40 +86,48 @@
         <div class="col-xs-12 col-sm-8">
             <img ng-src="{{model.car.url}}"/>
 
-            <label for="name">Name</label>
+            <label for="carName">Name</label>
             <input class="form-control"
                    ng-model="model.car.name"
-                   id="name"/>
+                   id="carName"/>
 
-            <label for="name">Year</label>
+            <label for="year">Year</label>
             <input class="form-control"
                    ng-model="model.car.year"
                    id="year"/>
 
-            <label for="name">Make</label>
+            <label for="make">Make</label>
             <input class="form-control"
                    ng-model="model.car.make"
                    id="make"/>
 
-            <label for="name">Model</label>
+            <label for="model">Model</label>
             <input class="form-control"
                    ng-model="model.car.model"
                    id="model"/>
 
-            <label for="name">Condition</label>
+            <label for="condition">Condition</label>
             <input class="form-control"
                    ng-model="model.car.condition"
                    id="condition"/>
 
-            <label for="name">Capacity</label>
+            <label for="capacity">Capacity</label>
             <input class="form-control"
                    ng-model="model.car.capacity"
                    id="capacity"/>
 
-            <label for="name">Type</label>
+            <label for="carType">Type</label>
             <input class="form-control"
-                   ng-model="model.car.type"
-                   id="type"/>
+                   ng-model="model.car.carType"
+                   id="carType"/>
+
+            <form action="/api/upload" method="post" enctype="multipart/form-data">
+                <input name="userId" value="{{model.userId}}" style="display: none"/>
+                <input name="carId" value="{{model.carId}}" style="display: none"/>
+                <label>Photo</label>
+                <input name="myFile" type="file" class="form-control"/>
+                <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+            </form>
 
             <a ng-click="model.updateCar()"
                class="btn btn-block btn-success">
