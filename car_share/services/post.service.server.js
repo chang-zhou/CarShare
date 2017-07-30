@@ -1,7 +1,7 @@
 const app = require('../../express');
 var postModel = require('../model/post/post.model.server');
 
-app.post("/api/user/:userId/post", createPostForUser);
+app.post("/api/user/:userId/car/:carId/post", createPost);
 app.get("/api/user/:userId/post", findAllPostsForUser);
 app.get("/api/post/:postId", findPostById);
 app.delete("/api/user/:userId/post/:postId", deletePost);
@@ -15,11 +15,12 @@ function findAllPostsForUser(req, res) {
         });
 }
 
-function createPostForUser(req, res) {
+function createPost(req, res) {
     var post = req.body;
     var userId = req.params['userId'];
+    var carId = req.params['carId'];
     postModel
-        .createPostForUser(userId, post)
+        .createPost(userId, carId, post)
         .then(function (post) {
             res.json(post);
         });

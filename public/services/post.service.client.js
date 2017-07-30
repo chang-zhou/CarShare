@@ -10,8 +10,8 @@
         this.deletePost = deletePost;
         this.updatePost = updatePost;
 
-        function createPost(userId, post) {
-            var url = "/api/user/"+userId+"/post";
+        function createPost(userId, carId, post) {
+            var url = "/api/user/"+userId+"/car/"+carId+"/post";
             return $http.post(url, post)
                 .then(function (response) {
                     return response.data;

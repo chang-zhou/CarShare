@@ -34,8 +34,8 @@
                 controllerAs: 'model'
             })
             .when('/user/:userId/post/new', {
-                templateUrl: 'views/post/templates/post-new.view.client.html',
-                controller: 'postNewController',
+                templateUrl: 'views/car/templates/car-list.view.client.html',
+                controller: 'carListController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/post/:postId', {
@@ -56,6 +56,11 @@
             .when('/user/:userId/car/:carId', {
                 templateUrl: 'views/car/templates/car-edit.view.client.html',
                 controller: 'carEditController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/car/:carId/post', {
+                templateUrl: 'views/post/templates/post-new.view.client.html',
+                controller: 'postNewController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/history', {

@@ -10,6 +10,7 @@ var carSchema = mongoose.Schema({
     url: String,
     capacity: String,
     carType: String,
+    posts: {type: mongoose.Schema.Types.ObjectId, ref: "PostModel"},
     dateCreated: {type: Date, default: Date.now}
 }, {collection: 'car'});
 

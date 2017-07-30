@@ -26,7 +26,7 @@
                     </a>
                 </p>
                 <a class="navbar-brand" href="#!/user/{{model.userId}}/post/new">
-                    New Post
+                    Edit Post
                 </a>
                 <p class="navbar-text pull-right">
                     <a href="#!/user/{{model.userId}}/post" class="navbar-link">
@@ -84,6 +84,8 @@
             </ul>
         </div>
         <div class="col-xs-12 col-sm-8">
+            <img ng-src="{{model.post._car.url}}"/>
+
             <label for="startDate">Start Date</label>
             <input class="form-control"
                    ng-model="model.post.startDate"
