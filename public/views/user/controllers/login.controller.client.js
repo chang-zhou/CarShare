@@ -10,15 +10,28 @@
         model.login = login;
 
         function login(username, password) {
+            if(username === null || username === '' || typeof username === 'undefined') {
+                model.error = 'Username is required';
+                return;
+            }
+
+            else if(password === null || password === '' || typeof password === 'undefined') {
+                model.error = 'Password is required';
+                return;
+            }
+
             userService
-                .findUserByCredentials(username, password)
+                .login(username, password)
                 .then(function (found) {
-                    if(found !== null) {
-                        $location.url('/user/' + found._id);
-                    } else {
-                        model.message = "sorry, " + username + " not found. please try again!";
-                    }
-                });
+                        if(found !== null) {
+                            $location.url('/profile');
+                        } else {
+                            model.message = "Sorry, " + username + " not found. please try again!";
+                        }
+                    },
+                    function (error) {
+                        model.message = "Sorry, " + username + " not found. please try again!";
+                    });
         }
     }
 })();

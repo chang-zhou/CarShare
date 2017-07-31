@@ -28,10 +28,13 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId', {
+            .when('/profile', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/user/:userId/post', {
                 templateUrl: 'views/post/templates/post-list.view.client.html',
@@ -74,4 +77,22 @@
                 controllerAs: 'model'
             })
     }
+
+    function checkLoggedIn(userService, $q, $location) {
+        var deferred = $q.defer();
+
+        userService
+            .loggedin()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
 })();

@@ -3,11 +3,11 @@
         .module('CarShare')
         .controller('profileController', profileController);
     
-    function profileController($location, $routeParams, userService) {
+    function profileController($location, currentUser, userService) {
 
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
 
         model.searchPosts = '#!/user/'+model.userId+'/search';
         model.myPosts = '#!/user/'+model.userId+'/post';
@@ -16,20 +16,15 @@
 
         model.deleteUser = deleteUser;
         model.updateUser = updateUser;
+        model.logout = logout;
 
         function init() {
-            userService
-                .findUserById(model.userId)
-                .then(renderUser, userError);
+            renderUser(currentUser);
         }
         init();
 
         function renderUser (user) {
             model.user = user;
-        }
-
-        function userError() {
-            model.error = "User not found";
         }
 
         function deleteUser() {
@@ -45,6 +40,14 @@
                 .updateUser(model.userId, model.user)
                 .then(function (status) {
                     $location.url("/user/"+model.userId);
+                });
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
                 });
         }
     }
