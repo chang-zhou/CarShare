@@ -40,8 +40,8 @@ function deleteHistory(carId, historyId) {
     return carModel
         .findById(carId)
         .then(function (car) {
-            var index = car.historys.indexOf(historyId);
-            car.historys.splice(index, 1);
+            var index = car.histories.indexOf(historyId);
+            car.histories.splice(index, 1);
             return car.save();
         });
 }
@@ -50,7 +50,7 @@ function addHistory(carId, historyId) {
     return carModel
         .findById(carId)
         .then(function (car) {
-            car.historys.push(historyId);
+            car.histories.push(historyId);
             return car.save();
         });
 }

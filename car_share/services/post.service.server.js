@@ -2,10 +2,19 @@ const app = require('../../express');
 var postModel = require('../model/post/post.model.server');
 
 app.post("/api/user/:userId/car/:carId/post", createPost);
+app.get("/api/search/allPosts", findAllPosts);
 app.get("/api/user/:userId/post", findAllPostsForUser);
 app.get("/api/post/:postId", findPostById);
-app.delete("/api/user/:userId/post/:postId", deletePost);
+app.delete("/api/user/:userId/car/:carId/post/:postId", deletePost);
 app.put("/api/post/:postId", updatePost);
+
+function findAllPosts(req, res) {
+    postModel
+        .findAllPosts()
+        .then(function (posts) {
+            res.json(posts);
+        });
+}
 
 function findAllPostsForUser(req, res) {
     postModel
@@ -38,8 +47,9 @@ function findPostById(req, res) {
 function deletePost(req, res) {
     var postId = req.params['postId'];
     var userId = req.params['userId'];
+    var carId = req.params['carId'];
     postModel
-        .deletePostFromUser(userId, postId)
+        .deletePost(userId, carId, postId)
         .then(function (status) {
             res.sendStatus(200);
         });

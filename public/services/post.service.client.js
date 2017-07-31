@@ -9,6 +9,15 @@
         this.findPostById = findPostById;
         this.deletePost = deletePost;
         this.updatePost = updatePost;
+        this.findAllPosts = findAllPosts;
+
+        function findAllPosts() {
+            var url = "/api/search/allPosts";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function createPost(userId, carId, post) {
             var url = "/api/user/"+userId+"/car/"+carId+"/post";
@@ -34,8 +43,8 @@
                 });
         }
 
-        function deletePost(userId, postId) {
-            var url = "/api/user/"+userId+"/post/"+postId;
+        function deletePost(userId, carId, postId) {
+            var url = "/api/user/"+userId+"/car/"+carId+"/post/"+postId;
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;

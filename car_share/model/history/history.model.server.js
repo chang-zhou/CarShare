@@ -3,6 +3,7 @@ var historySchema = require('./history.schema.server');
 var historyModel = mongoose.model('HistoryModel', historySchema);
 var userModel = require('../user/user.model.server');
 var carModel = require('../car/car.model.server');
+var postModel = require('../post/post.model.server');
 
 // api
 historyModel.createHistory = createHistory;
@@ -32,15 +33,18 @@ function findAllHistoriesForCar(carId) {
         .exec();
 }
 
-function createHistory(userId, carId, history) {
+function createHistory(userId, carId, renterId, postId, history) {
     history._user = userId;
     history._car = carId;
+    history._renter = renterId;
     return historyModel
         .create(history)
         .then(function (history) {
             userModel
                 .addHistory(userId, history._id);
-            return carModel
+            carModel
                 .addHistory(carId, history._id);
+            return postModel
+                .reservePost(postId, renterId);
         });
 }

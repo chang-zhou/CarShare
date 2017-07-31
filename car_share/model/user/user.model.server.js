@@ -63,8 +63,8 @@ function deleteHistory(userId, historyId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            var index = user.historys.indexOf(historyId);
-            user.historys.splice(index, 1);
+            var index = user.histories.indexOf(historyId);
+            user.histories.splice(index, 1);
             return user.save();
         });
 }
@@ -73,7 +73,7 @@ function addHistory(userId, historyId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            user.historys.push(historyId);
+            user.histories.push(historyId);
             return user.save();
         });
 }

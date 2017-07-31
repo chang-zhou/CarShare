@@ -9,8 +9,14 @@
         this.findHistoryByCarId = findHistoryByCarId;
         this.findHistoryById = findHistoryById;
 
-        function createHistory(userId, carId, history) {
-            var url = "/api/user/"+userId+"/car/"+carId+"/history";
+        function createHistory(userId, carId, renterId, post) {
+            var url = "/api/user/"+userId+"/car/"+carId+"/renter/"+renterId+"/post/"+post._id+"/history";
+            var history = {
+                startDate: post.startDate,
+                endDate: post.endDate,
+                price: post.price,
+                address: post.address
+            };
             return $http.post(url, history)
                 .then(function (response) {
                     return response.data;

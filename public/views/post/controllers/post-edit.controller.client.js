@@ -33,7 +33,7 @@
 
         function deletePost() {
             postService
-                .deletePost(model.userId, model.postId)
+                .deletePost(model.userId, model.post._car, model.postId)
                 .then(function (status) {
                     $location.url('/user/'+model.userId+'/post');
                 });

@@ -12,6 +12,7 @@ postModel.findAllPostsForCar = findAllPostsForCar;
 postModel.deletePost = deletePost;
 postModel.findPostById = findPostById;
 postModel.updatePost = updatePost;
+postModel.reservePost = reservePost;
 
 module.exports = postModel;
 
@@ -65,5 +66,17 @@ function createPost(userId, carId, post) {
 }
 
 function findAllPosts() {
-    return postModel.find();
+    return postModel
+        .find()
+        .populate('_user _car _renter')
+        .exec();
+}
+
+function reservePost(postId, renterId) {
+    return postModel
+        .findById(postId)
+        .then(function (post) {
+            post._renter = renterId;
+            return post.save();
+        })
 }

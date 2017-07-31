@@ -9,7 +9,7 @@
 
         model.userId = $routeParams['userId'];
 
-        model.searchPosts = '#!/search';
+        model.searchPosts = '#!/user/'+model.userId+'/search';
         model.myPosts = '#!/user/'+model.userId+'/post';
         model.myCars = '#!/user/'+model.userId+'/car';
         model.myHistory = '#!/user/'+model.userId+'/history';

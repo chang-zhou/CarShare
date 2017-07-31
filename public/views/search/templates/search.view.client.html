@@ -1,1 +1,95 @@
-<div>Hello</div>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid row">
+        <div class="col-xs-4 col-xs-4">
+            <div class="navbar-header">
+                <p class="navbar-text pull-left">
+                    <a href="/" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </p>
+                <div class="navbar-brand">
+                    All Posts
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8 col-sm-8">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#!/user/{{model.userId}}/post/new">
+                    Details
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4 col-xc-4">
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-9 col-xs-12">
+                            Available Date
+                        </div>
+                        <div class="col-lg-3 visible-lg">
+                            Price
+                        </div>
+                        <div class="col-md-3 hidden-sm hidden-xs">
+                            Address
+                        </div>
+                    </div>
+                </li>
+
+                <li ng-repeat="post in model.posts" class="list-group-item">
+                    <div class="row">
+                        <a ng-click="model.renderPostAndCar(post)">
+                            <div class="col-lg-6 col-md-9 col-xs-12">
+                                {{post.startDate | date}} - {{post.endDate | date}}
+                            </div>
+                            <div class="col-lg-3 visible-lg">
+                                {{post.price}}
+                            </div>
+                            <div class="col-md-3 hidden-sm hidden-xs">
+                                {{post.address}}
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-8 col-xc-8">
+            <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
+            <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
+
+            <div class="bing-map">bing map</div>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Condition</th>
+                    <th>Capacity</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{model.car.year}}</td>
+                    <td>{{model.car.make}}</td>
+                    <td>{{model.car.model}}</td>
+                    <td>{{model.car.condition}}</td>
+                    <td>{{model.car.capacity}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <a ng-click="model.reservePost(model.post)"
+               class="btn btn-block btn-primary">Reserve</a>
+        </div>
+    </div>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
+
