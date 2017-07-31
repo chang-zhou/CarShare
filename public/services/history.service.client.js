@@ -5,8 +5,8 @@
 
     function historyService($http) {
         this.createHistory = createHistory;
-        this.findHistoryByUserId = findHistoryByUserId;
-        this.findHistoryByCarId = findHistoryByCarId;
+        this.findHistoriesByUserId = findHistoriesByUserId;
+        this.findHistoriesByCarId = findHistoriesByCarId;
         this.findHistoryById = findHistoryById;
 
         function createHistory(userId, carId, renterId, post) {
@@ -23,7 +23,7 @@
                 });
         }
         
-        function findHistoryByUserId(userId) {
+        function findHistoriesByUserId(userId) {
             var url = "/api/user/"+userId+"/history";
             return $http.get(url)
                 .then(function (response) {
@@ -31,7 +31,7 @@
                 });
         }
 
-        function findHistoryByCarId(carId) {
+        function findHistoriesByCarId(carId) {
             var url = "/api/car/"+carId+"/history";
             return $http.get(url)
                 .then(function (response) {

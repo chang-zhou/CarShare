@@ -43,6 +43,7 @@
             }
 
             if(typeof post._renter !== 'undefined') {
+                model.message = null;
                 model.error = 'Sorry, the car has been reserved by someone else. Please try another car.';
                 return;
             }
@@ -52,8 +53,10 @@
 
             historyService
                 .createHistory(userId, carId, model.renterId, post)
+                .then(renderPostAndCar)
                 .then(function () {
                     model.message = 'You have successfully reserved this car!';
+                    $location.url('/user/'+userId+'/search');
                 });
         }
 

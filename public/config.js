@@ -73,10 +73,5 @@
                 controller: 'historyListController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/history/:historyId', {
-                templateUrl: 'views/history/templates/history-detail.view.client.html',
-                controller: 'historyDetailController',
-                controllerAs: 'model'
-            })
     }
 })();
