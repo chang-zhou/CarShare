@@ -8,15 +8,18 @@
             .when('/', {
                 templateUrl: 'home.html'
             })
-            .when('/search', {
+            .when('/guest-search', {
                 templateUrl: 'views/search/templates/search.view.client.html',
                 controller: 'searchController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/search', {
+            .when('/search', {
                 templateUrl: 'views/search/templates/search.view.client.html',
                 controller: 'searchController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/login', {
                 templateUrl: 'views/user/templates/login.view.client.html',
@@ -36,45 +39,69 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/post', {
+            .when('/post', {
                 templateUrl: 'views/post/templates/post-list.view.client.html',
                 controller: 'postListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/post/new', {
+            .when('/post/new', {
                 templateUrl: 'views/car/templates/car-list.view.client.html',
                 controller: 'carListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/post/:postId', {
+            .when('/post/:postId', {
                 templateUrl: 'views/post/templates/post-edit.view.client.html',
                 controller: 'postEditController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/car', {
+            .when('/car', {
                 templateUrl: 'views/car/templates/car-list.view.client.html',
                 controller: 'carListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/car/new', {
+            .when('/car/new', {
                 templateUrl: 'views/car/templates/car-new.view.client.html',
                 controller: 'carNewController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/car/:carId', {
+            .when('/car/:carId', {
                 templateUrl: 'views/car/templates/car-edit.view.client.html',
                 controller: 'carEditController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/car/:carId/post', {
+            .when('/car/:carId/post', {
                 templateUrl: 'views/post/templates/post-new.view.client.html',
                 controller: 'postNewController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/history', {
+            .when('/history', {
                 templateUrl: 'views/history/templates/history-list.view.client.html',
                 controller: 'historyListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
     }
 

@@ -84,3 +84,9 @@ body {
 .custom-btn {
     margin-bottom: 0px;
 }
+
+.jumbotron {
+    background-image: url('../img/tesla.jpg');
+    background-size: cover;
+    min-height: 500px;
+}

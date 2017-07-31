@@ -3,12 +3,13 @@
         .module('CarShare')
         .controller('carEditController', carEditController);
     
-    function carEditController($routeParams,
-                                   $location,
-                                   carService) {
+    function carEditController(currentUser,
+                               $routeParams,
+                               $location,
+                               carService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.carId = $routeParams['carId'];
         model.deleteCar = deleteCar;
         model.updateCar = updateCar;
@@ -35,7 +36,7 @@
             carService
                 .deleteCar(model.userId, model.carId)
                 .then(function (status) {
-                    $location.url('/user/'+model.userId+'/car');
+                    $location.url('/car');
                 });
         }
 
@@ -43,7 +44,7 @@
             carService
                 .updateCar(model.carId, model.car)
                 .then(function (status) {
-                    $location.url('/user/'+model.userId+'/car');
+                    $location.url('/car');
                 });
         }
     }

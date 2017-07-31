@@ -3,11 +3,11 @@
         .module('CarShare')
         .controller('carListController', carListController);
     
-    function carListController($routeParams,
-                                   carService) {
+    function carListController(currentUser,
+                               carService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
 
         function init() {
             carService

@@ -3,14 +3,14 @@
         .module('CarShare')
         .controller('searchController', searchController);
 
-    function searchController($routeParams,
+    function searchController(currentUser,
                               $location,
                               postService,
                               historyService) {
 
         var model = this;
 
-        model.renterId = $routeParams['userId'];
+        model.renterId = currentUser._id;
 
         model.renderPostAndCar = renderPostAndCar;
         model.reservePost = reservePost;
@@ -56,7 +56,7 @@
                 .then(renderPostAndCar)
                 .then(function () {
                     model.message = 'You have successfully reserved this car!';
-                    $location.url('/user/'+userId+'/search');
+                    $location.url('/search');
                 });
         }
 

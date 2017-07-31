@@ -3,11 +3,11 @@
         .module('CarShare')
         .controller('historyListController', historyListController);
     
-    function historyListController($routeParams,
+    function historyListController(currentUser,
                                    historyService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.renderHistory = renderHistory;
 
         function init() {

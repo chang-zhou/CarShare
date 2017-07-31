@@ -9,10 +9,10 @@
 
         model.userId = currentUser._id;
 
-        model.searchPosts = '#!/user/'+model.userId+'/search';
-        model.myPosts = '#!/user/'+model.userId+'/post';
-        model.myCars = '#!/user/'+model.userId+'/car';
-        model.myHistory = '#!/user/'+model.userId+'/history';
+        model.searchPosts = '#!/search';
+        model.myPosts = '#!/post';
+        model.myCars = '#!/car';
+        model.myHistory = '#!history';
 
         model.deleteUser = deleteUser;
         model.updateUser = updateUser;
@@ -39,7 +39,7 @@
             userService
                 .updateUser(model.userId, model.user)
                 .then(function (status) {
-                    $location.url("/user/"+model.userId);
+                    $location.url("/profile");
                 });
         }
 

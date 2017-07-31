@@ -4,11 +4,12 @@
         .controller('postEditController', postEditController);
     
     function postEditController($routeParams,
+                                   currentUser,
                                    $location,
                                    postService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.postId = $routeParams['postId'];
         model.deletePost = deletePost;
         model.updatePost = updatePost;
@@ -35,7 +36,7 @@
             postService
                 .deletePost(model.userId, model.post._car, model.postId)
                 .then(function (status) {
-                    $location.url('/user/'+model.userId+'/post');
+                    $location.url('/post');
                 });
         }
 
@@ -43,7 +44,7 @@
             carService
                 .updateCar(model.userId, model.post)
                 .then(function (status) {
-                    $location.url('/user/'+model.userId+'/post');
+                    $location.url('/post');
                 });
         }
     }

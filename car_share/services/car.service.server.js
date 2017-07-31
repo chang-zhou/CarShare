@@ -83,7 +83,7 @@ function uploadImage(req, res) {
         carType: carType,
         url: url
     };
-    var callbackUrl   = "/index.html#!/user/"+userId+"/car";
+    var callbackUrl   = "/index.html#!/car";
     if(carId === 'default'){
         carModel
             .createCar(userId, newCar)

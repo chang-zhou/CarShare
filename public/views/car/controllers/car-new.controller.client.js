@@ -3,10 +3,10 @@
         .module('CarShare')
         .controller('carNewController', carNewController);
     
-    function carNewController($routeParams, carService) {
+    function carNewController(currentUser, carService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.carId = 'default';
 
         function init() {

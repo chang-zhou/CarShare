@@ -3,11 +3,11 @@
         .module('CarShare')
         .controller('postListController', postListController);
     
-    function postListController($routeParams,
+    function postListController(currentUser,
                                    postService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
 
         function init() {
             postService

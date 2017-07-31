@@ -5,11 +5,12 @@
     
     function postNewController($routeParams,
                                $location,
+                               currentUser,
                                postService,
                                carService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.carId = $routeParams['carId'];
         model.createPost = createPost;
 
@@ -40,7 +41,7 @@
                 .createPost(model.userId, model.carId, post)
                 .then(renderPost)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/post');
+                    $location.url('/post');
                 });
         }
     }
