@@ -12,7 +12,7 @@
 
         model.renterId = currentUser._id;
 
-        model.renderPostAndCar = renderPostAndCar;
+        model.renderPost = renderPost;
         model.reservePost = reservePost;
 
         function init() {
@@ -24,11 +24,14 @@
 
         function renderPosts(posts) {
             model.posts = posts;
+            getMap(posts);
         }
 
-        function renderPostAndCar(post) {
+        function renderPost(post) {
             model.post = post;
+            model.user = post._user;
             model.car = post._car;
+            centerMap(post);
         }
 
         function reservePost(post) {
@@ -49,6 +52,11 @@
             }
 
             var userId = post._user._id;
+            if(model.renterId === userId){
+                model.error = "Sorry, you can't reserve your own car.";
+                return;
+            }
+
             var carId = post._car._id;
 
             historyService
@@ -60,8 +68,33 @@
                 });
         }
 
+        function getMap(posts)
+        {
+            var map = new Microsoft.Maps.Map('#bingMap', {
+                credentials: 'AkCagrbwaijCPR5KWSwq6XMRrlKP1sh4wyJOZjJn1wQSJh7rqLY-tR61wY6328a5'
+            });
 
+            for(i in posts){
+                if(posts[i].lat && posts[i].lng){
+                    var location = new Microsoft.Maps.Location(posts[i].lat, posts[i].lng);
 
+                    //Create pushpin for post
+                    var pin = new Microsoft.Maps.Pushpin(location);
+
+                    //Add the pushpin to the map
+                    map.entities.push(pin);
+                }
+            }
+        }
+
+        function centerMap(post){
+            if(post.lat && post.lng){
+                var location = new Microsoft.Maps.Location(post.lat, post.lng);
+                map.setView({
+                    center: location
+                });
+            }
+        }
 
     }
 })();

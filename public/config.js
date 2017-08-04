@@ -3,14 +3,16 @@
         .module('CarShare')
         .config(configuration);
 
-    function configuration($routeProvider) {
+    function configuration($routeProvider, $sceDelegateProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'home.html'
+                templateUrl: 'views/home/templates/home.html',
+                controller: 'homeController',
+                controllerAs: 'model'
             })
             .when('/guest-search', {
                 templateUrl: 'views/search/templates/search.view.client.html',
-                controller: 'searchController',
+                controller: 'guestSearchController',
                 controllerAs: 'model'
             })
             .when('/search', {
@@ -102,7 +104,16 @@
                 resolve: {
                     currentUser: checkLoggedIn
                 }
-            })
+            });
+
+        $sceDelegateProvider.resourceUrlWhitelist([
+            //Allow same origin resource loads.
+            'self',
+
+            //Allow loading from Bing Maps Rest Services.
+            'https://dev.virtualearth.net/REST/**'
+        ]);
+
     }
 
     function checkLoggedIn(userService, $q, $location) {

@@ -3,7 +3,7 @@
         .module('CarShare')
         .service('postService', postService);
     
-    function postService($http) {
+    function postService($http, $sce) {
         this.createPost = createPost;
         this.findAllPostsForUser = findAllPostsForUser;
         this.findPostById = findPostById;
@@ -20,10 +20,28 @@
         }
 
         function createPost(userId, carId, post) {
-            var url = "/api/user/"+userId+"/car/"+carId+"/post";
-            return $http.post(url, post)
+            var address = encodeURI(post.address);
+            var geoCodeUrl = $sce.trustAsResourceUrl("http://dev.virtualearth.net/REST/v1/Locations/US/" +post.state+"/"
+                +post.postCode+"/"+post.city+"/"+address+"?&key=AkCagrbwaijCPR5KWSwq6XMRrlKP1sh4wyJOZjJn1wQSJh7rqLY-tR61wY6328a5");
+
+            return $http.jsonp(geoCodeUrl, {jsonpCallbackParam: 'jsonp'})
                 .then(function (response) {
-                    return response.data;
+                    var data = response.data;
+
+                    var resourceSets = data.resourceSets;
+                    var resourceSet = resourceSets[0];
+                    var resources = resourceSet.resources;
+                    var resource = resources[0];
+                    var coordinates = resource.point.coordinates;
+
+                    post.lat = coordinates[0];
+                    post.lng = coordinates[1];
+
+                    var url = "/api/user/"+userId+"/car/"+carId+"/post";
+                    return $http.post(url, post)
+                        .then(function (response) {
+                            return response.data;
+                        });
                 });
         }
         

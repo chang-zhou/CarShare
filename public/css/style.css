@@ -90,3 +90,9 @@ body {
     background-size: cover;
     min-height: 500px;
 }
+
+.bingMap {
+    position:relative;
+    width:100%;
+    min-height:400px;
+}

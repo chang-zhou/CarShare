@@ -42,6 +42,8 @@ function createHistory(userId, carId, renterId, postId, history) {
         .then(function (history) {
             userModel
                 .addHistory(userId, history._id);
+            userModel
+                .addHistory(renterId, history._id);
             carModel
                 .addHistory(carId, history._id);
             return postModel

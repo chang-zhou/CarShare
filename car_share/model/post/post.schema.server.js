@@ -8,6 +8,11 @@ var websiteSchema = mongoose.Schema({
     endDate: Date,
     price: Number,
     address: String,
+    city: String,
+    state: String,
+    postCode: String,
+    lat: Number,
+    lng: Number,
     description: String,
     dateCreated: {type: Date, default: Date.now}
 }, {collection: 'post'});

@@ -41,8 +41,8 @@
         }
 
         function updatePost() {
-            carService
-                .updateCar(model.userId, model.post)
+            postService
+                .updatePost(model.postId, model.post)
                 .then(function (status) {
                     $location.url('/post');
                 });

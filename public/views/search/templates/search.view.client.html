@@ -43,7 +43,7 @@
 
                 <li ng-repeat="post in model.posts" class="list-group-item">
                     <div class="row">
-                        <a ng-click="model.renderPostAndCar(post)">
+                        <a ng-click="model.renderPost(post)">
                             <div class="col-lg-6 col-md-9 col-xs-12">
                                 {{post.startDate | date}} - {{post.endDate | date}}
                             </div>
@@ -62,7 +62,7 @@
             <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
             <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
 
-            <div class="bing-map">bing map</div>
+            <div class="bingMap" id="bingMap"></div>
 
             <table class="table">
                 <thead>
@@ -72,6 +72,8 @@
                     <th>Model</th>
                     <th>Condition</th>
                     <th>Capacity</th>
+                    <th>Owner</th>
+                    <th>Email</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -81,6 +83,8 @@
                     <td>{{model.car.model}}</td>
                     <td>{{model.car.condition}}</td>
                     <td>{{model.car.capacity}}</td>
+                    <td>{{model.user.firstName}} {{model.user.lastName}}</td>
+                    <td>{{model.user.email}}</td>
                 </tr>
                 </tbody>
             </table>
