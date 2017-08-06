@@ -21,7 +21,7 @@
 
         function createPost(userId, carId, post) {
             var address = encodeURI(post.address);
-            var geoCodeUrl = $sce.trustAsResourceUrl("http://dev.virtualearth.net/REST/v1/Locations/US/" +post.state+"/"
+            var geoCodeUrl = $sce.trustAsResourceUrl("https://dev.virtualearth.net/REST/v1/Locations/US/" +post.state+"/"
                 +post.postCode+"/"+post.city+"/"+address+"?&key=AkCagrbwaijCPR5KWSwq6XMRrlKP1sh4wyJOZjJn1wQSJh7rqLY-tR61wY6328a5");
 
             return $http.jsonp(geoCodeUrl, {jsonpCallbackParam: 'jsonp'})

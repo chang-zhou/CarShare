@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bfe4d00-1191-43f9-997d-e1be54e21a95" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/car_share/app.js" afterPath="$PROJECT_DIR$/car_share/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/services/post.service.client.js" afterPath="$PROJECT_DIR$/public/services/post.service.client.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,11 +17,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="user.service.server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.service.server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/car_share/services/user.service.server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="29" column="50" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="50" />
+            <state relative-caret-position="130">
+              <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="post.service.client.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/services/post.service.client.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="23" column="59" lean-forward="false" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -107,7 +117,6 @@
         <option value="$PROJECT_DIR$/public/views/post/templates/post-edit.view.client.html" />
         <option value="$PROJECT_DIR$/car_share/services/post.service.server.js" />
         <option value="$PROJECT_DIR$/public/views/post/controllers/post-edit.controller.client.js" />
-        <option value="$PROJECT_DIR$/public/services/post.service.client.js" />
         <option value="$PROJECT_DIR$/public/views/admin/templates/admin.view.client.js.html" />
         <option value="$PROJECT_DIR$/public/views/home/controllers/home.controller.client.js" />
         <option value="$PROJECT_DIR$/public/views/home/templates/home.html" />
@@ -126,6 +135,7 @@
         <option value="$PROJECT_DIR$/public/views/search/controllers/guestSearch.controller.client.js" />
         <option value="$PROJECT_DIR$/public/views/search/controllers/search.controller.client.js" />
         <option value="$PROJECT_DIR$/car_share/app.js" />
+        <option value="$PROJECT_DIR$/public/services/post.service.client.js" />
       </list>
     </option>
   </component>
@@ -612,12 +622,12 @@
       <workItem from="1501486641544" duration="367000" />
       <workItem from="1501821651997" duration="12547000" />
       <workItem from="1501954951313" duration="18029000" />
-      <workItem from="1501987559322" duration="787000" />
+      <workItem from="1501987559322" duration="1352000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107914000" />
+    <option name="totallyTimeSpent" value="108479000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -823,14 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/services/post.service.client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="34" column="65" lean-forward="false" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/home/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -872,14 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="46" column="36" lean-forward="false" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="25" column="26" lean-forward="true" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1021,10 +1015,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1411">
+          <caret line="25" column="26" lean-forward="true" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/car_share/services/user.service.server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="29" column="50" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="50" />
+        <state relative-caret-position="130">
+          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/services/post.service.client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="23" column="59" lean-forward="false" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
           <folding />
         </state>
       </provider>
