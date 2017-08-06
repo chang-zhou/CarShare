@@ -14,7 +14,7 @@
         model.myCars = '#!/car';
         model.myHistory = '#!history';
 
-        model.deleteUser = deleteUser;
+        model.unregisterUser = unregisterUser;
         model.updateUser = updateUser;
         model.logout = logout;
 
@@ -27,9 +27,9 @@
             model.user = user;
         }
 
-        function deleteUser() {
+        function unregisterUser() {
             userService
-                .deleteUser(model.userId)
+                .unregisterUser(model.userId)
                 .then(function (status) {
                     $location.url("/login");
                 });

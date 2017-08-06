@@ -3,14 +3,20 @@
         .module('CarShare')
         .controller('homeController', homeController);
 
-    function homeController($location) {
+    function homeController($location, currentUser) {
 
         var model = this;
 
+        model.currentUser = currentUser;
         model.search = search;
 
         function search(keyword) {
-            $location.url('/guest-search');
+            if(model.currentUser._id){
+                $location.url('/search');
+            }
+            else{
+                $location.url('/guest-search');
+            }
         }
 
     }

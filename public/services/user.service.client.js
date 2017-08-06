@@ -11,10 +11,13 @@
             findUserByCredentials: findUserByCredentials,
             login: login,
             loggedin: loggedin,
+            checkAdmin: checkAdmin,
             logout: logout,
             register: register,
+            unregisterUser: unregisterUser,
             deleteUser: deleteUser,
-            updateUser: updateUser
+            updateUser: updateUser,
+            findAllUsers : findAllUsers
         };
         return api;
 
@@ -38,6 +41,14 @@
                 });
         }
 
+        function checkAdmin() {
+            var url = "/api/checkAdmin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
         function logout() {
             var url = "/api/logout";
             return $http.post(url)
@@ -54,8 +65,16 @@
                 });
         }
 
-        function deleteUser(userId) {
+        function unregisterUser(userId) {
             var url = "/api/user/"+userId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function deleteUser(userId) {
+            var url = "/api/admin/user/"+userId;
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;
@@ -100,6 +119,14 @@
                 .then(function (response) {
                     return response.data;
                 });
+        }
+
+        function findAllUsers() {
+            var url = "api/admin/user";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
         }
     }
 })();

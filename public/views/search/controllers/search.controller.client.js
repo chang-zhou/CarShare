@@ -9,6 +9,7 @@
                               historyService) {
 
         var model = this;
+        var map;
 
         model.renterId = currentUser._id;
 
@@ -70,7 +71,7 @@
 
         function getMap(posts)
         {
-            var map = new Microsoft.Maps.Map('#bingMap', {
+            map = new Microsoft.Maps.Map('#bingMap', {
                 credentials: 'AkCagrbwaijCPR5KWSwq6XMRrlKP1sh4wyJOZjJn1wQSJh7rqLY-tR61wY6328a5'
             });
 

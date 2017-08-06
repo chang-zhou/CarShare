@@ -8,7 +8,24 @@
             .when('/', {
                 templateUrl: 'views/home/templates/home.html',
                 controller: 'homeController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkCurrentUser
+                }
+            })
+            .when('/admin', {
+                templateUrl: 'views/admin/templates/admin.view.client.html',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/admin/user', {
+                templateUrl: 'views/admin/templates/admin-users.view.client.html',
+                controller: 'adminUserController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
             })
             .when('/guest-search', {
                 templateUrl: 'views/search/templates/search.view.client.html',
@@ -125,6 +142,39 @@
                 if(user === '0') {
                     deferred.reject();
                     $location.url('/login');
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function checkAdmin(userService, $q, $location) {
+        var deferred = $q.defer();
+
+        userService
+            .checkAdmin()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.reject();
+                    $location.url('/');
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function checkCurrentUser(userService, $q) {
+        var deferred = $q.defer();
+
+        userService
+            .loggedin()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.resolve({});
                 } else {
                     deferred.resolve(user);
                 }

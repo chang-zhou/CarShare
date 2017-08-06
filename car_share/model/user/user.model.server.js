@@ -7,6 +7,7 @@ userModel.findUserById = findUserById;
 userModel.findAllUsers = findAllUsers;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserByCredentials = findUserByCredentials;
+userModel.findUserByGoogleId = findUserByGoogleId;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 
@@ -79,6 +80,7 @@ function addHistory(userId, historyId) {
 }
 
 function createUser(user) {
+    user.role = 'USER';
     return userModel.create(user);
 }
 
@@ -106,4 +108,8 @@ function updateUser(userId, newUser) {
 
 function deleteUser(userId) {
     return userModel.remove({_id: userId});
+}
+
+function findUserByGoogleId(googleId) {
+    return userModel.findOne({'google.id': googleId});
 }

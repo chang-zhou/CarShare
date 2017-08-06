@@ -1,0 +1,71 @@
+<div class="container-fluid">
+    <div class="col-xs-4">
+        <h2>User List</h2>
+        <ul class="list-group">
+            <li ng-repeat="user in model.users" class="list-group-item">
+                <a ng-click="model.deleteUser(user)">
+                    <span class="glyphicon glyphicon-remove pull-right"></span>
+                </a>
+                <a ng-click="model.renderUser(user)">
+                    {{user.username}} {{user.firstName}} {{user.lastName}}
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-4">
+        <h2>Create User</h2>
+        <div ng-show="model.error" class="alert alert-danger">
+            {{model.error}}
+        </div>
+        <label for="username">Username</label>
+        <input class="form-control"
+               type="text"
+               ng-model="user.username"
+               id="username"/>
+        <label for="password">Password</label>
+        <input class="form-control"
+               type="password"
+               ng-model="user.password"
+               id="password"/>
+        <label for="password2">Confirm Password</label>
+        <input class="form-control"
+               type="password"
+               ng-model="user.password2"
+               id="password2"/>
+        <a ng-click="model.createUser(user.username, user.password, user.password2)"
+           class="btn btn-primary btn-block">
+            Create
+        </a>
+    </div>
+    <div class="col-xs-4">
+        <h2>Update User</h2>
+        <div ng-show="model.message" class="alert alert-info">
+            {{model.message}}
+        </div>
+        <label for="username1">Username</label>
+        <input ng-model="model.user.username"
+               type="text"
+               class="form-control"
+               id="username1"
+               placeholder="Username">
+        <label for="firstName">First Name</label>
+        <input class="form-control"
+               type="text"
+               ng-model="model.user.firstName"
+               id="firstName"/>
+        <label for="lastName">Last Namme</label>
+        <input class="form-control"
+               type="text"
+               ng-model="model.user.lastName"
+               id="lastName"/>
+        <label for="email">Email</label>
+        <input class="form-control"
+               type="email"
+               ng-model="model.user.email"
+               id="email"/>
+        <a ng-click="model.updateUser()"
+           class="btn btn-success btn-block">
+            Update
+        </a>
+    </div>
+</div>

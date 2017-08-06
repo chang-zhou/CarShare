@@ -5,9 +5,13 @@
             <div class="navbar-brand">
                 Profile
             </div>
+            <a href="#!/"
+               class="navbar-brand">
+                Home
+            </a>
             <a href="{{model.searchPosts}}"
                class="navbar-brand">
-                Search Posts
+                Search
             </a>
             <a href="{{model.myCars}}"
                class="navbar-brand">
@@ -62,9 +66,9 @@
         </div>
     </form>
 
-    <a ng-click="model.deleteUser()"
+    <a ng-click="model.unregisterUser()"
        class="btn btn-danger btn-block">
-        Delete
+        Unregister
     </a>
     <a ng-click="model.updateUser()"
        class="btn btn-success btn-block">
