@@ -24,6 +24,11 @@
 </nav>
 
 <div class="container-fluid">
+    <input class="form-control"
+           ng-model="keyWord"
+           placeholder="enter address or zip code"
+           id="keyWord"/>
+    <a class="btn-primary btn btn-block" ng-click="model.filterByKeyword(keyWord)">Filter</a>
     <div class="row">
         <div class="col-sm-4 col-xc-4">
             <ul class="list-group">

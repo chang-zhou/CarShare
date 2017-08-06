@@ -13,6 +13,7 @@ postModel.deletePost = deletePost;
 postModel.findPostById = findPostById;
 postModel.updatePost = updatePost;
 postModel.reservePost = reservePost;
+postModel.findPostsByKeyword = findPostsByKeyword;
 
 module.exports = postModel;
 
@@ -79,4 +80,11 @@ function reservePost(postId, renterId) {
             post._renter = renterId;
             return post.save();
         })
+}
+
+function findPostsByKeyword(keyword) {
+    return postModel
+        .find({$or: [{postCode:  keyword}, {city: keyword}]})
+        .populate('_user _car _renter')
+        .exec();
 }

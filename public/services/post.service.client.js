@@ -10,9 +10,18 @@
         this.deletePost = deletePost;
         this.updatePost = updatePost;
         this.findAllPosts = findAllPosts;
+        this.findPostsByKeyword = findPostsByKeyword;
 
         function findAllPosts() {
             var url = "/api/search/allPosts";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findPostsByKeyword(keyword) {
+            var url = "/api/search/keyword/"+keyword;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
