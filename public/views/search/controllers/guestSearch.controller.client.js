@@ -57,6 +57,7 @@
 
                     //Store some metadata with the pushpin.
                     pin.metadata = {
+                        id: i,
                         title: posts[i]._car.name,
                         description: 'Price: $' + posts[i].price + '/day'
                     };
@@ -81,14 +82,18 @@
         function pushpinClicked(e) {
             //Make sure the infobox has metadata to display.
             if (e.target.metadata) {
-                //Set the infobox options with the metadata of the pushpin.
-                infobox.setOptions({
-                    location: e.target.getLocation(),
-                    title: e.target.metadata.title,
-                    description: e.target.metadata.description,
-                    visible: true
-                });
+                displayInfobox(e.target);
             }
+        }
+
+        function displayInfobox(pushpin) {
+            //Set the infobox options with the metadata of the pushpin.
+            infobox.setOptions({
+                location: pushpin.getLocation(),
+                title: pushpin.metadata.title,
+                description: pushpin.metadata.description,
+                visible: true
+            });
         }
 
         function filterByKeyword(keyword) {

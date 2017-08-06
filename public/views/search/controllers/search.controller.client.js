@@ -108,18 +108,20 @@
         }
 
         function pushpinClicked(e) {
-            model.post = e.target;
             //Make sure the infobox has metadata to display.
             if (e.target.metadata) {
-                //Set the infobox options with the metadata of the pushpin.
-                infobox.setOptions({
-                    location: e.target.getLocation(),
-                    title: e.target.metadata.title,
-                    description: e.target.metadata.description,
-                    visible: true
-                });
+                displayInfobox(e.target);
             }
-            model.post = allposts[e.target.metadata.id];
+        }
+
+        function displayInfobox(pushpin) {
+            //Set the infobox options with the metadata of the pushpin.
+            infobox.setOptions({
+                location: pushpin.getLocation(),
+                title: pushpin.metadata.title,
+                description: pushpin.metadata.description,
+                visible: true
+            });
         }
 
         function centerMap(post){
