@@ -32,7 +32,20 @@
                 controller: 'guestSearchController',
                 controllerAs: 'model'
             })
+            .when('/guest-search/:keyword', {
+                templateUrl: 'views/search/templates/search.view.client.html',
+                controller: 'guestSearchController',
+                controllerAs: 'model'
+            })
             .when('/search', {
+                templateUrl: 'views/search/templates/search.view.client.html',
+                controller: 'searchController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when('/search/:keyword', {
                 templateUrl: 'views/search/templates/search.view.client.html',
                 controller: 'searchController',
                 controllerAs: 'model',

@@ -3,9 +3,11 @@
         .module('CarShare')
         .controller('guestSearchController', guestSearchController);
 
-    function guestSearchController(postService) {
+    function guestSearchController($routeParams,
+                                   postService) {
 
         var model = this;
+        var keyword = $routeParams['keyword'];
         var map, infobox;
 
         model.renderPost = renderPost;
@@ -13,9 +15,16 @@
         model.filterByKeyword = filterByKeyword;
 
         function init() {
-            postService
-                .findAllPosts()
-                .then(renderPosts);
+            if(keyword === null || keyword === '' || typeof keyword === 'undefined'){
+                postService
+                    .findAllPosts()
+                    .then(renderPosts);
+            }
+            else{
+                postService
+                    .findPostsByKeyword(keyword)
+                    .then(renderPosts);
+            }
         }
         init();
 

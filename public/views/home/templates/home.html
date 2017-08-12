@@ -16,7 +16,8 @@
                 <li ng-if="model.currentUser.role.indexOf('ADMIN') > -1"><a href="#!/admin">Admin</a></li>
                 <li ng-if="!model.currentUser._id"><a href="#!/login">Log in</a></li>
                 <li ng-if="!model.currentUser._id"><a href="#!/register">Sign up</a></li>
-                <li ng-if="model.currentUser._id"><a href="#!/profile">Profile</a> </li>
+                <li ng-if="model.currentUser._id"><a href="#!/profile">Profile</a>
+                <li ng-if="model.currentUser._id"><a ng-click="model.logout()">Log out</a> </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

@@ -4,11 +4,13 @@
         .controller('searchController', searchController);
 
     function searchController(currentUser,
+                              $routeParams,
                               $location,
                               postService,
                               historyService) {
 
         var model = this;
+        var keyword = $routeParams['keyword'];
         var map, infobox, allposts;
 
         model.renterId = currentUser._id;
@@ -18,9 +20,16 @@
         model.filterByKeyword = filterByKeyword;
 
         function init() {
-            postService
-                .findAllPosts()
-                .then(renderPosts);
+            if(keyword === null || keyword === '' || typeof keyword === 'undefined'){
+                postService
+                    .findAllPosts()
+                    .then(renderPosts);
+            }
+            else{
+                postService
+                    .findPostsByKeyword(keyword)
+                    .then(renderPosts);
+            }
         }
         init();
 
