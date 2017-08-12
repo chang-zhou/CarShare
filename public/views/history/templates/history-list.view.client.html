@@ -62,6 +62,14 @@
             <table class="table">
                 <tbody>
                 <tr>
+                    <td>Car Owner</td>
+                    <td>{{model.history._user.username}}</td>
+                </tr>
+                <tr>
+                    <td>Renter</td>
+                    <td>{{model.history._renter.username}}</td>
+                </tr>
+                <tr>
                     <td>Start Date</td>
                     <td>{{model.history.startDate | date}}</td>
                 </tr>
@@ -79,7 +87,7 @@
                 </tr>
                 <tr>
                     <td>Address</td>
-                    <td>{{model.history.address}}</td>
+                    <td>{{model.history.address}},{{model.history.city}},{{model.history.state}},{{model.history.postCode}}</td>
                 </tr>
                 </tbody>
             </table>

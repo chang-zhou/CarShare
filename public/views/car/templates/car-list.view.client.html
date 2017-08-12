@@ -8,7 +8,7 @@
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
-            <a class="navbar-brand" href="#!/user/{{model.userId}}/car">
+            <a class="navbar-brand" href="#!/car">
                 My Cars
             </a>
             <p class="navbar-text pull-right">
@@ -44,7 +44,7 @@
         <li ng-repeat="car in model.cars" class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-xs-11">
-                    <a href="#!/user/{{model.userId}}/car/{{car._id}}">
+                    <a href="#!/car/{{car._id}}">
                         {{car.name}}
                     </a>
                 </div>

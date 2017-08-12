@@ -15,7 +15,10 @@
                 startDate: post.startDate,
                 endDate: post.endDate,
                 price: post.price,
-                address: post.address
+                address: post.address,
+                city: post.city,
+                state: post.state,
+                postCode: post.postCode
             };
             return $http.post(url, history)
                 .then(function (response) {

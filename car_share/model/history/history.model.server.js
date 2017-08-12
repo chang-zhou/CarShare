@@ -19,8 +19,9 @@ function findHistoryById(historyId) {
 
 function findAllHistoriesForUser(userId) {
     return historyModel
-        .find({_user: userId})
+        .find({$or: [{_user: userId}, {_renter: userId}]})
         .populate('_user')
+        .populate('_renter')
         .populate('_car')
         .exec();
 }

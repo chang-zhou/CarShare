@@ -8,6 +8,9 @@ var historySchema = mongoose.Schema({
     endDate: Date,
     price: String,
     address: String,
+    city: String,
+    state: String,
+    postCode: String,
     dateCreated: {type: Date, default: Date.now}
 }, {collection: 'history'});
 
