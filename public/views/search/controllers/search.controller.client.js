@@ -57,15 +57,15 @@
                 return;
             }
 
-            if(typeof post._renter !== 'undefined') {
-                model.message = null;
-                model.error = 'Sorry, the car has been reserved by someone else. Please try another car.';
-                return;
-            }
-
             var userId = post._user._id;
             if(model.renterId === userId){
                 model.error = "Sorry, you can't reserve your own car.";
+                return;
+            }
+
+            if(typeof post._renter !== 'undefined') {
+                model.message = null;
+                model.error = 'Sorry, the car has been reserved by someone else. Please try another car.';
                 return;
             }
 
