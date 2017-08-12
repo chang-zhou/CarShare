@@ -37,12 +37,21 @@
         }
 
         function createPost(post) {
+            if(isEmpty(post.startDate) || isEmpty(post.endDate) || isEmpty(post.price) || isEmpty(post.address) ||
+                isEmpty(post.city) || isEmpty(post.state) || isEmpty(post.postCode)) {
+                model.error = 'Please provide the required information';
+                return;
+            }
             postService
                 .createPost(model.userId, model.carId, post)
                 .then(renderPost)
                 .then(function () {
                     $location.url('/post');
                 });
+        }
+
+        function isEmpty(field){
+            return field === null || field === '' || field === 'undefined';
         }
     }
 })();

@@ -88,13 +88,13 @@
                 <input name="userId" value="{{model.userId}}" style="display: none"/>
                 <input name="carId" value="{{model.carId}}" style="display: none"/>
                 <label>Car Name</label>
-                <input name="carName" value={{model.car.name}} placeholder="Car Name" class="form-control"/>
+                <input name="carName" value={{model.car.name}} placeholder="Car Name" class="form-control" required/>
                 <label>Year</label>
-                <input name="year" value={{model.car.year}} placeholder="2017" class="form-control"/>
+                <input name="year" value={{model.car.year}} placeholder="2017" class="form-control" required/>
                 <label>Make</label>
-                <input name="make" value={{model.car.make}} placeholder="Toyota" class="form-control"/>
+                <input name="make" value={{model.car.make}} placeholder="Toyota" class="form-control" required/>
                 <label>Model</label>
-                <input name="model" value={{model.car.model}} placeholder="Camry" class="form-control"/>
+                <input name="model" value={{model.car.model}} placeholder="Camry" class="form-control" required/>
                 <label>Condition</label>
                 <input name="condition" value={{model.car.condition}} placeholder="Excellent" class="form-control"/>
                 <label>Capacity</label>
@@ -102,7 +102,7 @@
                 <label>Type</label>
                 <input name="carType" value={{model.car.carType}} placeholder="Sedan" class="form-control"/>
                 <label>Photo</label>
-                <input name="myFile" type="file" class="form-control"/>
+                <input name="myFile" type="file" class="form-control" required/>
                 <button type="submit" class="btn btn-block btn-primary">Register Car</button>
             </form>
         </div>
