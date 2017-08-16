@@ -71,7 +71,7 @@
                             password: password
                         };
                         return userService
-                            .register(newUser)
+                            .createUser(newUser)
                             .then(function (user) {
                                 findAllUsers();
                             });

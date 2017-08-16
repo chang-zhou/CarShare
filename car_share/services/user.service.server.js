@@ -144,6 +144,7 @@ function updateUser(req, res) {
 
 function createUser(req, res) {
     var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
     userModel
         .createUser(user)
         .then(function (user) {
